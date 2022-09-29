@@ -4,11 +4,6 @@
 	list-style: none;
 }
 
-/* .completed {
-	color: #cdcdcd;
-	text-decoration: line-through;
-} */
-
 li.task-item {
 	position: relative;
 	font-size: 24px;
