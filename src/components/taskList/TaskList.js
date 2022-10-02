@@ -5,12 +5,12 @@ import './taskList.css';
 export default class TaskList extends Component {
 
     render() {
-        const { todos, onDeleted } = this.props;
+        const { todos, onDeleted, onChangeTaskStatus } = this.props;
         const elements = todos.map(item => {
-            const { id, ...itemProps } = item;
+            const { id, status } = item;
             return (
-                <li key={id} className={item.class}>
-                    <Task {...itemProps} onDeleted={() => onDeleted(id)} />
+                <li key={id} className={status}>
+                    <Task props={item} onChangeTaskStatus={(id) => onChangeTaskStatus(id)} onDeleted={() => onDeleted(id)} />
                 </li>
             )
         })
