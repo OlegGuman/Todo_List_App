@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import formatDistanceToNow from 'date-fns/formatDistanceToNow';
+//import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import Footer from "../footer";
 import NewTaskForm from "../newTaskForm";
 import TaskList from '../taskList';
@@ -13,9 +13,9 @@ export default class App extends Component {
 
   state = {
     todoData: [
-      { id: 1, status: 'active', isDone: false, title: 'Completed task', created: formatDistanceToNow(new Date(2022, 5, 10, 8, 15, 0)) },
-      { id: 2, status: 'active', isDone: false, title: 'Editing task', created: formatDistanceToNow(new Date(2022, 5, 5, 8, 15, 0)) },
-      { id: 3, status: 'active', isDone: false, title: 'Active task', created: formatDistanceToNow(new Date(2022, 7, 10, 8, 15, 0)) },
+      { id: 1, status: 'active', isDone: false, title: 'Completed task', created: new Date(2021, 5, 10, 8, 15, 0) },
+      { id: 2, status: 'active', isDone: false, title: 'Editing task', created: new Date(2022, 8, 7, 8, 15, 0) },
+      { id: 3, status: 'active', isDone: false, title: 'Active task', created: new Date(2022, 4, 5, 8, 15, 0) },
     ],
     filter: 'all',
   };
@@ -26,7 +26,7 @@ export default class App extends Component {
       status: 'active',
       isDone: false,
       title: text,
-      created: formatDistanceToNow(new Date()),
+      created: Date.now(),
     };
 
     this.setState(({ todoData }) => {

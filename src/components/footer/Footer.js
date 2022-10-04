@@ -1,8 +1,23 @@
 import React, { Component } from "react";
+import PropTypes from 'prop-types';
 import './footer.css';
 import TasksFilter from "./tasksFilter";
 
 export default class Footer extends Component {
+
+    static defaultProps = {
+        leftItem: () => {},
+        filter: () => {},
+        clearCompleted: () => {},
+        onChangeFilter: () => {},
+    };
+
+    static propTypes = {
+        leftItem: PropTypes.number,
+        filter: PropTypes.string,
+        clearCompleted: PropTypes.func,
+        onChangeFilter: PropTypes.func,
+    };
 
     render() {
         const {leftItem, filter, clearCompleted, onChangeFilter} = this.props;

@@ -3,6 +3,11 @@ import './newTaskForm.css';
 
 export default class NewTaskForm extends Component {
 
+    static defaultProps = {
+        handleSubmitForm: () => {},
+        handleAddNewTask: () => {},        
+    };
+
     state = {
         title: '',
     };

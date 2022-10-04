@@ -1,7 +1,18 @@
 import React, { Component } from "react";
+import PropTypes from 'prop-types';
 import './tasksFilter.css';
 
 export default class TasksFilter extends Component {
+
+    static defaultProps = {
+        filter: () => {},
+        onChangeFilter: () => {},
+    };
+
+    static propTypes = {
+        onChangeFilter: PropTypes.func,
+        filter: PropTypes.string,
+    };
 
     state = {
         buttons: [
