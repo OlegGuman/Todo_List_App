@@ -27,6 +27,7 @@ export default class Task extends React.Component {
 
   render() {
     const { props, onChangeTaskStatus, onDeleted } = this.props
+    const {timeMin, timeSec} = props
     return (
       <div className="view">
         <input
@@ -37,7 +38,7 @@ export default class Task extends React.Component {
         />
         <label>
           <span className="description">{props.title}</span>
-          <TimerTask />
+          <TimerTask timeMin={timeMin} timeSec={timeSec} />
           <span className="created">{this.createdTime(props.created)}</span>
         </label>
         <button className="icon icon-edit"></button>

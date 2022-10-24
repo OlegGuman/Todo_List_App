@@ -6,7 +6,6 @@ import TaskList from '../taskList'
 import './app.css'
 
 export default class App extends React.Component {
-  
   generateId = () => {
     return Math.random().toString(16).slice(2) + new Date().getTime().toString(36)
   }
@@ -15,26 +14,31 @@ export default class App extends React.Component {
     todoData: [
       {
         id: 1,
+        timeMin: 0,
+        timeSec: 0,
         status: 'active',
         isDone: false,
         title: 'Completed task',
         created: new Date(2021, 5, 10, 8, 15, 0),
       },
-      { id: 2, status: 'active', isDone: false, title: 'Editing task', created: new Date(2022, 8, 7, 8, 15, 0) },
-      { id: 3, status: 'active', isDone: false, title: 'Active task', created: new Date(2022, 4, 5, 8, 15, 0) },
+      { id: 2, timeMin: 0, timeSec: 0, status: 'active', isDone: false, title: 'Editing task', created: new Date(2022, 8, 7, 8, 15, 0) },
+      { id: 3, timeMin: 0, timeSec: 0, status: 'active', isDone: false, title: 'Active task', created: new Date(2022, 4, 5, 8, 15, 0) },
     ],
     filter: 'all',
   }
 
-  handleCreateTask = (text) => {
+  handleCreateTask = (text, min, sec) => {
+    min !== '' ? min : (min = 0)
+    sec !== '' ? sec : (sec = 0)
     const newItem = {
       id: this.generateId(),
+      timeMin: min,
+      timeSec: sec,
       status: 'active',
       isDone: false,
       title: text,
       created: Date.now(),
     }
-
     this.setState(({ todoData }) => {
       const newArray = [...todoData, newItem]
       return {

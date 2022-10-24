@@ -4,37 +4,77 @@ import './newTaskForm.css'
 export default class NewTaskForm extends React.Component {
   static defaultProps = {
     handleSubmitForm: () => {},
-    handleAddNewTask: () => {},
+    handleTaskTitle: () => {},
+    handleTimeMin: () => {},
+    handleTimeSec: () => {},
   }
 
   state = {
-    title: '',
+    titleTask: '',
+    timeTaskMin: '',
+    timeTaskSec: '',
   }
 
-  handleSubmitForm = (e) => {
-    e.preventDefault()
-    this.props.onCreateTask(this.state.title)
+  handleTaskTitle = ({target: {value}}) => {
     this.setState({
-      title: '',
+      titleTask: value,
     })
   }
 
-  handleAddNewTask = (e) => {
+  handleTimeMin = ({target: {value}}) => {
     this.setState({
-      title: e.target.value,
+      timeTaskMin: value,
+    })
+  }
+
+  handleTimeSec = ({target: {value}}) => {
+    this.setState({
+      timeTaskSec: value,
+    })
+  }
+
+  handleSubmitForm = (e) => {
+    const {titleTask, timeTaskMin, timeTaskSec} = this.state
+    e.preventDefault()
+    this.props.onCreateTask(titleTask, timeTaskMin, timeTaskSec)
+    this.setState({
+      titleTask: '',
+      timeTaskMin: '',
+      timeTaskSec: ''
     })
   }
 
   render() {
+    const {titleTask, timeTaskMin, timeTaskSec} = this.state
     return (
-      <form onSubmit={this.handleSubmitForm}>
+      <form className="new-todo-form" onSubmit={this.handleSubmitForm}>
         <input
           className="new-todo"
-          type="text"
-          placeholder="What needs to be done?"
-          onChange={this.handleAddNewTask}
-          value={this.state.title}
+          type='text'
+          name='title'
+          placeholder="Task"
+          onChange={this.handleTaskTitle}
+          value={titleTask}
         />
+        <input
+          className="new-todo-form__timer"
+          name='min'
+          max='59'
+          type='number'
+          onChange={this.handleTimeMin}
+          value={timeTaskMin}
+          placeholder="Min"
+        />
+        <input
+          className="new-todo-form__timer"
+          name='sec'
+          max='59'
+          type='number'
+          onChange={this.handleTimeSec}
+          value={timeTaskSec}
+          placeholder="Sec"
+        />
+        <input className='new-todo-form__submit' type='submit'/>
       </form>
     )
   }

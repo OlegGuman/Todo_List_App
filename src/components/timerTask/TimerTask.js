@@ -3,9 +3,9 @@ import './timerTask.css'
 
 export default class TimerTask extends Component {
   state = {
-    totalTime: new Date(0, 0, 0),
-    min: 0,
-    sec: 0,
+    
+    min: this.props.timeMin,
+    sec: this.props.timeSec,
   }
 
   timeCount = () => {
@@ -14,9 +14,12 @@ export default class TimerTask extends Component {
     if (sec < 60) {
       sec++
     }
-    if (sec === 60) {
+    if (sec >= 60) {
       sec = 0
       min++
+    }
+    if (min >= 60) {
+      min = 0
     }
 
     this.setState({
@@ -44,7 +47,7 @@ export default class TimerTask extends Component {
       <span className="item-timer">
         <button onClick={() => this.timerPlay()} className="icon-play"></button>
         <button onClick={() => this.timePause()} className="icon-pause"></button>
-        <span className="total-time">{`${min}min ${sec}sec`}</span>
+        <span className="total-time">{`${min} min ${sec} sec`}</span>
       </span>
     )
   }
